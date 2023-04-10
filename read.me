@@ -1,0 +1,49 @@
+
+En esta segunda entrega del uso de datos de terceros (open-data) para mejorar tus operaciones, quiero presentarlos este proyecto para analizar el precio de las gasolinas en España.
+
+Los datos están disponibles en la web del Ministerio de Industria, Comercio y Turismo: (https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/)
+
+Como siempre, dividimos el uso de los datos en dos secciones: la parte informacional y la operacional. 
+
+PARTE INFORMACIONAL
+
+Llevo desde Diciembre cogiendo los datos y llegan ya a 1 millón y medio de registros, volumen para obtener buena información.
+
+Dentro de la parte informacional tenemos datos interesantes tanto de España como de Madrid:
+
+- Las gasolineras representan bastante bien donde se ubica la gente. Se puede ver la “España Vaciada” y cómo en las islas las zonas pobladas están en la costa.
+- En Madrid, las gasolineras delimitan bastante bien la comunidad … y además es curioso ver que hay Códigos Postales sin gasolineras …
+
+Correlaciones entre provincias:
+
+- En ciertas provincias, se puede ver entre ellas una correlación entre el numero de gasolineras que tiene, y el rango de diferencia de precios. A más gasolineras mas rango de precios, como se puede ver en Lleida, Cordoba, Ciudad Real, Granada … Pero en otras provincias no está tan claro esa relación entre ellas.
+
+Mejor dia de la semana para repostar:
+
+- En España es el jueves para el diesel, y el martes para la gasolina.
+- En la Comunidad de Madrid, el mejor día para echar diesel es el más caro para la gasolina, que curioso…
+
+Evoluciones temporales de los precios:
+
+- En el Diesel en España, los máximos no suelen fluctuar (hay una gasolinera en Granada que casi siempre tienen el precio más alto y constante)los  mínimos si tienen mas competencia, y se suelen mover con picos puntuales de varios dias, y luego con subidas o bajadas mas constantes.
+- En la Gasolina, el precio de los maximos es similar, muy estable. y el minimo es estable también, … con una subida clara en enero y luego constancia en el precio, sin picos como el diesel.
+- En la Comunidad de Madrid, el máximo es muy similar al de España, con un pico el 11M, curioso… y los minimos tienen menos picos. (en el diesel)
+
+
+Finalmente, he realizado un seguimiento específico a una de las gasolineras más baratas de Madrid, en Tres Cantos, donde se puede ver como el diesel ha bajado de 1.6 a 1.4 en este tiempo, mientras que la gasolina, aunque bajo al principios de año, se ha quedado al mismo precio que en diciembre: 1.5. Por lo que el Diesel ha pasado de estar 10 centimos por encima a 10 centimos por debajo …curioso…supongo que el precio del gas natural tendrá la culpa, que nos decian que al estar tan alto era mas caro el diesel que la gasolina por el tratamiento para obtenerlo …me apunto buscar esos precios para ver si se puede ver esa relación.
+
+PARTE OPERACIONAL
+
+He pensado como puede ayudar esta informacion al conductor. Poner los datos al servicio del usuario y tener en ruta la información de la gasolinera más barata. Ya se que existen muchas apps que hacen lo mismo o mejor pero o te ponen publicidad o te usan para sacarte datos y quién sabe a quién venderlos. Además soy un firme defensor de los asistentes de voz como interfaces de entrada (sobre todo si conduces)
+
+Para ello, mediante una consulta que mide distancias en km sobre posiciones GPS, he generado un atajo via Siri (OSX) que:
+
+- Obtiene tu posicion actual 
+- Busca el top3 de gasolinas baratas en 25km a la redonda (configurable). Mediante conexion ssh a una maquina linux que ejecuta el python correspondiente.
+- Te permite elegir una de las tres.
+- Te abre esa gasolinera en el navegador GPS(Apple Maps)
+
+Tengo pendiente 2 mejoras:
+
+- Indicar la distancia de esas gasolineras a la posicion actual.
+- Indicar si estan en tu sentido de la marcha actual o tienes que retroceder.
